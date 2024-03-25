@@ -1,0 +1,1060 @@
+<html>
+    <head>
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<!--         <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7" /> -->
+
+        <!-- Global site tag (gtag.js) - Google Analytics Start -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-9967381-28"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'UA-9967381-28');
+        </script>
+        <!-- Global site tag (gtag.js) - Google Analytics End -->
+
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="description" content="台灣高鐵網路訂票，不論商務出差或出遊旅行，隨訂即出發，探索在地美好！✓ 空位車次查詢 ✓ 票價查詢 ✓ 車票預訂與線上付款 ✓ 訂位紀錄查詢/管理 ✓ 商務車廂座位選位 ✓ 下載T-EX app快速取得手機票證">
+
+        <!-- TEMP: -->
+        <!-- 
+        <meta name="robots" content="noindex, nofollow">
+        -->
+
+        <!-- Open Graph Meta -->
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="zh-Hant" />
+        <meta property="og:site_name" content="台灣高鐵網路訂票 | 台灣高鐵" />
+        <meta property="og:title" content="台灣高鐵網路訂票 | 台灣高鐵" />
+        <meta property="og:description" content="台灣高鐵網路訂票，不論商務出差或出遊旅行，隨訂即出發，探索在地美好！✓ 空位車次查詢 ✓ 票價查詢 ✓ 車票預訂與線上付款 ✓ 訂位紀錄查詢/管理 ✓ 商務車廂座位選位 ✓ 下載T-EX app快速取得手機票證" />
+        <meta property="og:url" wicket:message="content=homePageLink" content="https://irs.thsrc.com.tw"/>
+        <meta property="og:image" content="https://sorrypage-thsrc.cdn.hinet.net/IRS/logo.svg"/>
+
+        <!-- Favicon -->
+        <link sizes="120x120" rel="icon" href="/IMINT/images/common/favicon.png"/>
+        <title>台灣高鐵網路訂票</title>
+
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+
+        <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+
+        <!-- Material Icons -->
+        <link href='https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined' rel='stylesheet'>
+
+        <!-- UIkit CSS -->
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/css/uikit.min.css'/>
+
+        <!-- Flatpickr CSS -->
+        <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css'/>
+
+        <link rel="stylesheet" href="/IMINT/css/styles221005.css" type="text/css">
+        <link rel="stylesheet" href="/IMINT/css/rwd_calendar.css" type="text/css">
+        <link rel="stylesheet" href="/IMINT/css/taishin.css" type="text/css">
+    
+<!--         <meta http-equiv="content-language" content="zh-hant-tw"> -->
+        <link type="text/css" href="css/base/jquery-ui.css" rel="stylesheet" /><script type="text/javascript" src="js/jquery-3.7.1.min.js"></script><script type="text/javascript" src="js/jquery-ui-1.13.2.min.js"></script><script type="text/javascript" src="js/jquery-migrate-3.4.1.min.js"></script>
+
+        <!-- UIkit JS -->
+        <script src='https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/js/uikit.min.js'></script><script src='https://cdn.jsdelivr.net/npm/uikit@3.5.9/dist/js/uikit-icons.min.js'></script>
+
+        <!-- Flatpickr JS -->
+        <script src='https://cdn.jsdelivr.net/npm/flatpickr'></script>
+
+        <!-- Day JS -->
+        <script src='/IMINT/js/dayjs-zhTW.js'></script>
+
+        <!-- ================================= -->
+        <script id="tw-com-mitac-webapp-thsr-viewer-Home-0" type="text/javascript">
+            jQuery.browser = {};
+            (function () {
+                jQuery.browser.msie = false;
+                jQuery.browser.version = 0;
+                if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+                    jQuery.browser.msie = true;
+                    jQuery.browser.version = RegExp.$1;
+                }
+            })();
+        </script>
+        <script src="/IMINT/js/rwd_irs.2.16.min.js" type="text/javascript"></script>
+        <script id="tw-com-mitac-webapp-thsr-viewer-Home-1" type="text/javascript">
+            $(document).ready(function() {
+                // jQuery.blockUI
+                /*
+                $(':submit[id!=paidModifySubmit]:submit[id!=goBackTGO], #SubmitImage').click(function() {
+                    $.blockUI({ message: $('#BusyBoxDiv').html() });
+                });
+
+                // iOS系統  history.back 頁面不會刷新問題
+                $(window).bind("pageshow", function(event) {
+                    if (event.originalEvent.persisted) {
+                        window.location.reload();
+                    }
+                });
+
+                $(window).bind("unload", function(){
+                    $.unblockUI();
+                });
+                */
+
+                $(':submit[id!=paidModifySubmit]:submit[id!=goBackTGO], #SubmitImage').click(function() {
+                   displayMaskFrame();
+                });
+
+                // iOS系統  history.back 頁面不會刷新問題
+                $(window).bind("pageshow", function(event) {
+                    if (event.originalEvent.persisted) {
+                        window.location.reload();
+                    }
+                });
+
+                $(window).bind("load", function(){
+                    hideMaskFrame();
+                });
+
+                $(window).bind("unload", function(){
+                    hideMaskFrame();
+                });
+
+                // 控制錯誤訊息顯示區塊
+                if ($('#feedMSG li').length>0) {
+                     $('#divErrMSG').show();
+                } else {
+                    $('#divErrMSG').hide();
+                }
+            });
+
+            // 顯示遮罩畫面 - 遮罩UI show
+            function displayMaskFrame() {
+                var loadingMask = $("#loadingMask");
+                loadingMask.css({ "z-index": 999999});  //最上層 : 999999 - 1； opacity=透明度(def=1)
+                loadingMask.show();
+
+                var maskFrame = $("#divMaskFrame");
+                maskFrame.css({ "z-index": 999998, "opacity": 0.6 });  //最上層 : 999999 - 1； opacity=透明度(def=1)
+                maskFrame.show();
+            }
+
+            // 隱藏遮罩畫面
+            function hideMaskFrame() {
+                var loadingMask = $("#loadingMask");
+                loadingMask.css({ "z-index": 0});  //最上層 : 999999 - 1； opacity=透明度(def=1)
+                loadingMask.hide();
+
+                var maskFrame = $("#divMaskFrame");
+                maskFrame.css({ "z-index": 0, "opacity": 1 });  //最上層 : 999999 - 1； opacity=透明度(def=1)
+                maskFrame.hide();
+            }
+        </script>
+    
+        <script charset="utf-8" src="/IMINT/js/js.cookie.min.js" type="text/javascript"></script>
+        <script id="tw-com-mitac-webapp-thsr-viewer-Home-0" type="text/javascript">
+            $(document).ready(function(){
+            	console.log('document.ready start');
+                BookingS1.load();
+
+                $("#heroBG").show();
+                $("#mainBody").prop("class", "home");
+
+                var popupcookiepolicy = false;
+                var dialog = document.getElementById("cookiePolicy");
+                var posttime = new Date();
+
+                if ("" + Cookies.get("AcceptIRSCookiePolicyTime") != "" && "" + Cookies.get("AcceptIRSCookiePolicyTime") != "null" && "" + Cookies.get("AcceptIRSCookiePolicyTime") != "undefined") {
+                    popupcookiepolicy = false
+                } else {
+                    popupcookiepolicy = true;
+                }
+
+                if (popupcookiepolicy) {
+
+                    let cookieAccpetBtn = document.getElementById('cookieAccpetBtn');
+                    let cookiePolicy = document.getElementById('cookiePolicy');
+
+                    cookiePolicy.style.display = 'block';
+
+                    cookieAccpetBtn.addEventListener('click', function () {
+                        //Cookies.set("AcceptIRSCookiePolicyTime", posttime, {expires: 365});
+                        Cookies.set("AcceptIRSCookiePolicyTime", posttime, {expires: 365, secure: true});
+                        cookiePolicy.style.display = 'none';
+                    })
+                }
+
+                let securityCode = document.getElementById('securityCode');
+                securityCode.value = "";
+				let pageLocation = window.location + " ";
+				if (!!window.performance && window.performance.navigation.type == 2 || pageLocation.indexOf("wicket:interface=") >= 0) {
+                    $('#BookingS1Form_homeCaptcha_reCodeLink').click();
+				}
+
+                $('#toTimeInputField').change(function(){
+                    BookingS1.typesoftrainCheck();
+                    Calendar.load();
+                });
+
+                $('#backTimeInputField').change(function(){
+                    BookingS1.typesoftrainCheck();
+                });
+
+        		console.log('document.ready end');
+            });
+
+            if (top.location != self.location) {
+                location.href = "https://" + self.location.host + "/IMINT/notice";
+            }
+
+            $('#toTimeInputField').ready(function(){
+                Calendar.load();
+            });
+        </script>
+    <script type="text/javascript" src="/IMINT/resources/wicket.ajax.AbstractDefaultAjaxBehavior/wicket-ajax.js;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C"></script>
+<script type="text/javascript">var thsrcURL = "https://www.thsrc.com.tw/inc/marquee_zh_TW.js";</script><script >bazadebezolkohpepadr="397270547"</script><script type="text/javascript" src="https://irs.thsrc.com.tw/akam/13/17addee8"  defer></script></head>
+    <body id="mainBody">
+        <input name="idHash" id="idHash" type="hidden" value=""/>
+
+        <!-- Google Tag Manager Start -->
+        <script>
+        	var idHash = $('#idHash').val();
+	        window.dataLayer = window.dataLayer || [];
+	        window.dataLayer.push({
+	            'event':'user_id',
+	            'user_id':idHash //放入能接收到hash值的變數
+	        })
+        </script>
+        <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+        new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+        'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+        })(window,document,'script','dataLayer','GTM-KCZ6KF6');</script>
+        <!-- Google Tag Manager End -->
+        
+        <input name="dataLang" id="dataLang" type="hidden" value="zh"/>
+        <!-- Google Tag Manager (noscript) Start -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KCZ6KF6"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- Google Tag Manager (noscript) End -->
+
+        
+            <div class="hero-bg" id="heroBG" style="display: none;"></div>
+
+            <div id="BusyBoxDiv" style="display: none;">
+                <div id="loading" class="loading center" align="center">
+                    <div>
+                        <span>請稍候...</span>
+                    </div>
+                    <div class ="sp sp-circle"></div>
+                </div>
+            </div>
+
+            <!-- 遮罩UI: 整個畫面不可點選用 -->
+            <div id="divMaskFrame"></div>
+            <div id="loadingMask" class="loading center" align="center" style="display: none;">
+                <div>
+                    <span>請稍候...</span>
+                </div>
+                <div class ="sp sp-circle"></div>
+            </div>
+
+            <!----- header starts ----->
+            <header>
+                <nav class="uk-navbar uk-navbar-container uk-navbar-transparent" uk-navbar="mode: click">
+                    <!-- Navbar Left -->
+                    <div class="uk-navbar-left">
+                        <img src="https://sorrypage-thsrc.cdn.hinet.net/IRS/logo.svg" alt="" width="125">
+                    </div>
+
+                    <!-- Navbar Right -->
+                    <div class="uk-navbar-right">
+                        <!-- Desktop Menu -->
+                        <ul class="uk-navbar-nav uk-visible@s">
+                            <li>
+                                <a href="#">預訂車票</a>
+                                <div class="uk-navbar-dropdown" uk-dropdown>
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li class="uk-active">
+                                            <a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C">一般訂票</a>
+                                        </li>
+                                        
+                                        
+                                        
+                                        <li>
+                                            <a href="/IMINT/creditcard;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C">信用卡優惠</a>
+                                        </li>
+                                        
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#">管理訂位</a>
+                                <div class="uk-navbar-dropdown" uk-dropdown>
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li>
+                                            <a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History">訂位紀錄查詢、付款及修改</a>
+                                        </li>
+                                        <li>
+                                            <a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.QueryPNR">查詢訂位代號</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                            	<a href="#">交易/搭乘紀錄</a>
+                                <div class="uk-navbar-dropdown" uk-dropdown>
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li>
+                                			<a href="https://ptis.thsrc.com.tw/ptis/" target="_blank">交易/搭乘紀錄查詢</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-lang">
+                                    <span class="material-icons">language</span><span>繁體中文</span>
+                                </a>
+                                <div class="uk-navbar-dropdown" uk-dropdown>
+                                    <ul class="uk-nav uk-navbar-dropdown-nav">
+                                        <li><a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:interface=:0:goChinese::ILinkListener" id="goTW">繁體中文</a></li>
+                                        <li><a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:interface=:0:goEnglish::ILinkListener" id="goEN">English</a></li>
+                                        <li><a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:interface=:0:goJapanese::ILinkListener" id="goJP">日本語</a></li>
+                                    </ul>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- Mobile Menu -->
+                        <button class="btn-toggleMobileMenu uk-hidden@s" uk-navbar-toggle-icon type="button" uk-toggle="target: #mobileMenu"></button>
+                        <div id="mobileMenu" uk-offcanvas="overlay: true; flip: true;">
+                            <div class="uk-offcanvas-bar">
+                                <button class="uk-offcanvas-close" type="button" uk-close></button>
+                                <div class="mobile-menu-content">
+                                    <ul class="uk-nav uk-nav-default">
+                                        <li class="uk-nav-header">
+                                            <span class="material-icons">search</span>預訂車票
+                                        </li>
+                                        <li class="uk-active">
+                                            <a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C">一般訂票</a>
+                                        </li>
+                                        
+                                        
+                                        
+                                        <li>
+                                            <a href="/IMINT/creditcard;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C">信用卡優惠</a>
+                                        </li>
+                                        
+                                        <li class="uk-nav-divider"></li>
+                                        <li class="uk-nav-header ">
+                                            <span class="material-icons-outlined">edit</span>管理訂位
+                                        </li>
+                                        <li>
+                                            <a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.History">訂位紀錄查詢、付款及修改</a>
+                                        </li>
+                                        <li>
+                                            <a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:bookmarkablePage=:tw.com.mitac.webapp.thsr.viewer.QueryPNR">查詢訂位代號</a>
+                                        </li>
+                                        <li class="uk-nav-divider"></li>
+                                        <li class="uk-nav-header ">
+                                            <span class="material-icons-outlined">payment</span>交易/搭乘紀錄
+                                        </li>
+                                        <li>
+                                            <a href="https://ptis.thsrc.com.tw/ptis/" target="_blank">交易/搭乘紀錄查詢</a>
+                                        </li>
+                                        <li class="uk-nav-divider"></li>
+                                        <li class="uk-nav-header">
+                                            <span class="material-icons">language</span><span>語言</span>
+                                        </li>
+                                        <li>
+                                            <a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:interface=:0:goChinese::ILinkListener" id="goTW" class="uk-flex uk-flex-between">繁體中文
+                                                <span uk-icon="icon: check; ratio: 1" class="icon-check"></span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:interface=:0:goEnglish::ILinkListener" id="goEN" class="uk-flex uk-flex-between">English
+                                                
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:interface=:0:goJapanese::ILinkListener" id="goJP" class="uk-flex uk-flex-between">日本語
+                                                
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- END: Mobile Menu -->
+                    </div>
+                </nav>
+            </header>
+            <!----- header ends ----->
+
+            
+            <!-- News -->
+            <div id="divNews" class="news-container uk-flex" uk-alert style="display: none;">
+                <a class="uk-alert-close" uk-close></a>
+                <span class="material-icons">campaign</span>
+                <p id="ShowNews" class="news-content"></p>
+            </div>
+
+            <div class="uk-container">
+                <div class="home-headings uk-flex uk-flex-bottom">
+                    <h1 class="home-title">預訂高鐵車票</h1>
+                    <h2 class="home-subtitle uk-visible@s">預見美好，從這裡出發！</h2>
+                </div>
+
+                <!----- error message starts ----->
+                <div style="display: none;" id="divErrMSG" class="alert-group">
+                    <!-- Error Alert -->
+                    <div class="uk-alert-danger" uk-alert>
+                        <a class="uk-alert-close uk-close-large" uk-close></a>
+                        <div class="alert-content uk-flex">
+                            <span class="material-icons icon-alert">error</span>
+                            <div id="feedMSG">
+                                <span class="error">
+  
+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!----- error message ends ----->
+
+                <!-- Cookies Policy -->
+                <div id="cookiePolicy" class="cookie-policy-container" style="display: none;">
+                     <div class="cookie-policy-box">
+                         <h3 class="policy-title uk-flex uk-flex-middle">
+                            <span class="material-icons">privacy_tip</span>
+                            台灣高鐵網路訂票系統 個人資料使用說明
+                         </h3>
+                         <p class="policy-description"><span>為提供更好的用戶體驗，本網站使用 Cookie 分析和其他追蹤技術。請點擊【我同意】以繼續瀏覽網站。相關之個人資料權益事項，請參考本公司<a target="_blank" rel="noopener" style="color:#FF9900;" href="https://www.thsrc.com.tw/ArticleContent/d1fa3bcb-a016-47e2-88c6-7b7cbed00ed5">個人資料保護專區</a>。</span></p>
+                         <div class="uk-flex uk-flex-right">
+                             <button class="policy-btn-accept" id="cookieAccpetBtn" type="button">我同意</button>
+                         </div>
+                     </div>
+                </div>
+
+                <!-- Main -->
+                <main class="uk-flex uk-flex-column step-1">
+                    <!-- Search Form -->
+                    <section class="search">
+                        <!-- Switcher Nav -->
+                        <ul class="switcher-nav uk-flex uk-flex-stretch uk-position-relative">
+                            <li class="uk-active"><a href="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C">一般訂票</a></li>
+                            
+                            
+                            
+                            <li><a href="/IMINT/creditcard;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C" class="creditArea">信用卡優惠</a></li>
+                            
+                        </ul>
+                        <!-- Switcher Content -->
+                        <div class="switcher-content">
+                            <!-- 一般訂票 -->
+                            <div class="form-wrapper booking">
+                                <form action="/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:interface=:0:BookingS1Form::IFormSubmitListener" id="BookingS1Form" method="post" class="uk-flex uk-flex-column"><div style="display:none"><input type="hidden" name="BookingS1Form:hf:0" id="BookingS1Form:hf:0" /></div>
+                                
+								<!-- ## SCRIPT ## -->
+    							<div><script type="text/javascript">
+BookingS1.typesoftrainCheck = function() {
+console.log('BookingS1.typesoftrainCheck start');
+var disableTypesoftrain = false;
+if ($('select[name="tripCon:typesoftrip"]').val() == 1) {
+disableTypesoftrain = true;
+$('#earlyBirdSingleMsg').removeAttr('hidden');
+} else {
+$('#earlyBirdSingleMsg').attr('hidden','hidden');
+}
+if ($('select[name="trainCon:trainRadioGroup"]').val() == 1) {
+disableTypesoftrain = true;
+$('select[name="ticketPanel:rows:4:ticketAmount"]').attr("disabled", true);
+$('select[name="ticketPanel:rows:4:ticketAmount"]').val("0P");
+$('select[name="ticketPanel:rows:4:ticketAmount"]').css("background-color", "#ebebe4");
+$('select[name="ticketPanel:rows:4:ticketAmount"]').parent().hide();
+$('select[name="ticketPanel:rows:5:ticketAmount"]').val("0T");
+$('select[name="ticketPanel:rows:5:ticketAmount"]').css("background-color", "#ebebe4");
+$('select[name="ticketPanel:rows:5:ticketAmount"]').parent().hide();
+} else {
+$('select[name="ticketPanel:rows:4:ticketAmount"]').attr("disabled", false);
+$('select[name="ticketPanel:rows:4:ticketAmount"]').show();
+$('select[name="ticketPanel:rows:4:ticketAmount"]').css("background-color", "#FFFFFF");
+$('select[name="ticketPanel:rows:4:ticketAmount"]').parent().show();
+$('select[name="ticketPanel:rows:5:ticketAmount"]').attr("disabled", false);
+$('select[name="ticketPanel:rows:5:ticketAmount"]').show();
+$('select[name="ticketPanel:rows:5:ticketAmount"]').css("background-color", "#FFFFFF");
+$('select[name="ticketPanel:rows:5:ticketAmount"]').parent().show();
+BookingS1.checkTeenager();
+}
+var toTimeInput = $("#toTimeInputField").val().split("/");
+var backTimeInput = $("#backTimeInputField").val().split("/");
+var toDate = new Date(toTimeInput[0], toTimeInput[1] - 1, toTimeInput[2]);
+var backDate = new Date(backTimeInput[0], backTimeInput[1] - 1, backTimeInput[2]);
+if (toDate > backDate) {
+$("#backTimeInputField").val($("#toTimeInputField").val());
+}
+var bookingDate = new Date($("#toTimeInputField").attr("limit"));
+var nowTime = new Date();
+var nowDate = new Date(nowTime.getFullYear(), nowTime.getMonth(), nowTime.getDate());
+var searchDate = new Date(nowTime.getFullYear(), nowTime.getMonth(), nowTime.getDate());
+searchDate.setDate(nowDate.getDate() + parseInt($('select[name="trainTypeContainer:typesoftrain"]').attr('trainTypeSearchAfterDays') - 1, 10));
+if (toDate.getTime() < searchDate.getTime()
+|| (toDate.getTime() > bookingDate.getTime())
+|| ($('select[name="ticketPanel:rows:0:ticketAmount"]').val() == "0F")
+|| ($('input[name="bookingMethod"]:checked').attr("data-target") != "search-by-time")
+) {
+disableTypesoftrain = true;
+}
+if (disableTypesoftrain) {
+$('select[name="trainTypeContainer:typesoftrain"]').attr("disabled", true);
+$('select[name="trainTypeContainer:typesoftrain"]').val("0");
+} else {
+$('select[name="trainTypeContainer:typesoftrain"]').attr("disabled", false);
+$('select[name="trainTypeContainer:typesoftrain"]').show();
+}
+console.log('BookingS1.typesoftrainCheck end');
+};
+</script>
+</div>
+    							
+                                <!-- ## REMINDER ## -->
+                                
+
+                                <!-- ## TOP ROW ## -->
+                                <div class="uk-flex uk-flex-between uk-flex-middle form-top-row uk-child-width-auto@m uk-child-width-1-1 uk-grid-small" uk-grid>
+                                    <div>
+                                        <!-- Left -->
+                                        <div class="uk-flex uk-flex-middle uk-flex-wrap top-row-left" >
+                                            
+                                            
+                                            <label class="uk-form-label" style="">
+                                                <select name="tripCon:typesoftrip" id="BookingS1Form_tripCon_typesoftrip" class="uk-select">
+<option selected="selected" value="0">&#21934;&#31243;</option>
+<option value="1">&#21435;&#22238;&#31243;</option>
+</select>
+                                                <span class="material-icons">expand_more</span>
+                                            </label>
+                                            <label class="uk-form-label" style="">
+                                                <select name="trainCon:trainRadioGroup" id="BookingS1Form_trainCon_trainRadioGroup" class="uk-select">
+<option selected="selected" value="0">&#27161;&#28310;&#36554;&#24258;</option>
+<option value="1">&#21830;&#21209;&#36554;&#24258;</option>
+</select>
+                                                <span class="material-icons">expand_more</span>
+                                            </label>
+                                            <label class="uk-form-label" style="">
+                                                <select name="seatCon:seatRadioGroup" id="BookingS1Form_seatCon_seatRadioGroup" class="uk-select">
+<option selected="selected" value="0">&#28961;&#24231;&#20301;&#20559;&#22909;</option>
+<option value="1">&#38752;&#31383;&#20778;&#20808;</option>
+<option value="2">&#36208;&#36947;&#20778;&#20808;</option>
+</select>
+                                                <span class="material-icons">expand_more</span>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <!-- Right -->
+                                        <div class="top-row-right">
+                                            <span class="uk-form-label">搜尋方式</span>
+                                            
+                                                <label>
+                                                    <input data-target="search-by-time" name="bookingMethod" checked="" type="radio" value="radio31"/>
+                                                    時間
+                                                </label>
+                                                <label>
+                                                    <input data-target="search-by-trainNo" name="bookingMethod" type="radio" value="radio33"/>
+                                                    車次
+                                                </label>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ## MID ROW ## -->
+                                <div class="uk-child-width-1-1 uk-child-width-1-2@m form-mid-row uk-grid-small" uk-grid>
+                                    <div>
+                                        <div class="uk-grid uk-child-width-1-1 uk-child-width-1-2@m uk-grid-small">
+                                            <!-- 1 -->
+                                            <div>
+                                                <div class="form-group">
+                                                    <span class="material-icons-outlined">place</span>
+                                                    <label for="">出發站</label>
+                                                    <select name="selectStartStation" class="uk-select">
+<option selected="selected" value="">請選擇...</option>
+<option value="1">&#21335;&#28207;</option>
+<option value="2">&#21488;&#21271;</option>
+<option value="3">&#26495;&#27211;</option>
+<option value="4">&#26691;&#22290;</option>
+<option value="5">&#26032;&#31481;</option>
+<option value="6">&#33495;&#26647;</option>
+<option value="7">&#21488;&#20013;</option>
+<option value="8">&#24432;&#21270;</option>
+<option value="9">&#38642;&#26519;</option>
+<option value="10">&#22025;&#32681;</option>
+<option value="11">&#21488;&#21335;</option>
+<option value="12">&#24038;&#29151;</option>
+</select>
+                                                </div>
+                                            </div>
+                                            <!-- 2 -->
+                                            <div>
+                                                <div class="form-group">
+                                                    <span class="material-icons-outlined">place</span>
+                                                    <label for="">抵達站</label>
+                                                    <select name="selectDestinationStation" class="uk-select">
+<option selected="selected" value="">請選擇...</option>
+<option value="1">&#21335;&#28207;</option>
+<option value="2">&#21488;&#21271;</option>
+<option value="3">&#26495;&#27211;</option>
+<option value="4">&#26691;&#22290;</option>
+<option value="5">&#26032;&#31481;</option>
+<option value="6">&#33495;&#26647;</option>
+<option value="7">&#21488;&#20013;</option>
+<option value="8">&#24432;&#21270;</option>
+<option value="9">&#38642;&#26519;</option>
+<option value="10">&#22025;&#32681;</option>
+<option value="11">&#21488;&#21335;</option>
+<option value="12">&#24038;&#29151;</option>
+</select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <div class="uk-grid uk-child-width-1-2 uk-grid-small">
+                                            <!-- 3 -->
+                                            <div>
+                                                <div class="form-group" data-tripType="oneway">
+                                                    <span class="material-icons-outlined">today</span>
+                                                    <label for="">出發日期</label>
+                                                    <input date="2024/03/25" Flimit="" isDPromotion="false" type="text" Slimit="2024/04/22" isSPromotion="false" Plimit="2024/03/29" name="toTimeInputField" limit="2024/04/22" id="toTimeInputField" class="uk-input out-date" value="2024/03/25" isFreeSeat="false"/>
+                                                </div>
+                                                <div class="form-group return uk-hidden" data-tripType="round-trip">
+                                                    <span class="material-icons-outlined">today</span>
+                                                    <label for="">回程日期</label>
+                                                    <input name="backTimeInputField" id="backTimeInputField" type="text" class="uk-input out-date" value="2024/03/25"/>
+                                                </div>
+                                            </div>
+
+                                            <!-- 4 -->
+                                            <div>
+                                                <div class="form-group" data-key="bookingMethod" data-value="search-by-time" data-tripType="oneway">
+                                                    <span class="material-icons-outlined">watch_later</span>
+                                                    <label for="">出發時間</label>
+                                                    <select name="toTimeTable" class="uk-select out-time">
+<option selected="selected" value="">請選擇...</option>
+<option value="1201A">00:00</option>
+<option value="1230A">00:30</option>
+<option value="500A">05:00</option>
+<option value="530A">05:30</option>
+<option value="600A">06:00</option>
+<option value="630A">06:30</option>
+<option value="700A">07:00</option>
+<option value="730A">07:30</option>
+<option value="800A">08:00</option>
+<option value="830A">08:30</option>
+<option value="900A">09:00</option>
+<option value="930A">09:30</option>
+<option value="1000A">10:00</option>
+<option value="1030A">10:30</option>
+<option value="1100A">11:00</option>
+<option value="1130A">11:30</option>
+<option value="1200N">12:00</option>
+<option value="1230P">12:30</option>
+<option value="100P">13:00</option>
+<option value="130P">13:30</option>
+<option value="200P">14:00</option>
+<option value="230P">14:30</option>
+<option value="300P">15:00</option>
+<option value="330P">15:30</option>
+<option value="400P">16:00</option>
+<option value="430P">16:30</option>
+<option value="500P">17:00</option>
+<option value="530P">17:30</option>
+<option value="600P">18:00</option>
+<option value="630P">18:30</option>
+<option value="700P">19:00</option>
+<option value="730P">19:30</option>
+<option value="800P">20:00</option>
+<option value="830P">20:30</option>
+<option value="900P">21:00</option>
+<option value="930P">21:30</option>
+<option value="1000P">22:00</option>
+<option value="1030P">22:30</option>
+<option value="1100P">23:00</option>
+<option value="1130P">23:30</option>
+</select>
+                                                </div>
+                                                <div class="form-group uk-hidden" data-key="bookingMethod" data-value="search-by-trainNo" data-tripType="oneway">
+                                                    <span class="material-icons-outlined">directions_railway</span>
+                                                    <label for="">出發車次</label>
+                                                    <input size="4" maxlength="4" name="toTrainIDInputField" placeholder="輸入車次號碼" type="text" class="uk-input out-trainNo" value=""/>
+                                                </div>
+                                                <div class="form-group return uk-hidden" data-key="bookingMethod" data-value="search-by-time" data-tripType="round-trip">
+                                                    <span class="material-icons-outlined">watch_later</span>
+                                                    <label for="">回程時間</label>
+                                                    <select name="backTimeTable" class="uk-select out-time">
+<option selected="selected" value="">請選擇...</option>
+<option value="1201A">00:00</option>
+<option value="1230A">00:30</option>
+<option value="500A">05:00</option>
+<option value="530A">05:30</option>
+<option value="600A">06:00</option>
+<option value="630A">06:30</option>
+<option value="700A">07:00</option>
+<option value="730A">07:30</option>
+<option value="800A">08:00</option>
+<option value="830A">08:30</option>
+<option value="900A">09:00</option>
+<option value="930A">09:30</option>
+<option value="1000A">10:00</option>
+<option value="1030A">10:30</option>
+<option value="1100A">11:00</option>
+<option value="1130A">11:30</option>
+<option value="1200N">12:00</option>
+<option value="1230P">12:30</option>
+<option value="100P">13:00</option>
+<option value="130P">13:30</option>
+<option value="200P">14:00</option>
+<option value="230P">14:30</option>
+<option value="300P">15:00</option>
+<option value="330P">15:30</option>
+<option value="400P">16:00</option>
+<option value="430P">16:30</option>
+<option value="500P">17:00</option>
+<option value="530P">17:30</option>
+<option value="600P">18:00</option>
+<option value="630P">18:30</option>
+<option value="700P">19:00</option>
+<option value="730P">19:30</option>
+<option value="800P">20:00</option>
+<option value="830P">20:30</option>
+<option value="900P">21:00</option>
+<option value="930P">21:30</option>
+<option value="1000P">22:00</option>
+<option value="1030P">22:30</option>
+<option value="1100P">23:00</option>
+<option value="1130P">23:30</option>
+</select>
+                                                </div>
+                                                <div class="form-group return uk-hidden" data-key="bookingMethod" data-value="search-by-trainNo" data-tripType="round-trip">
+                                                    <span class="material-icons-outlined">directions_railway</span>
+                                                    <label for="">回程車次</label>
+                                                    <input size="4" maxlength="4" name="backTrainIDInputField" placeholder="輸入車次號碼" type="text" class="uk-input return-trainNo" value=""/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ## Bottom ROW ## -->
+                                <div class="uk-flex uk-flex-between form-bottom-row uk-child-width-auto@m uk-child-width-1-1 uk-grid-collapse" uk-grid>
+                                    <!-- Left -->
+                                    <div class="uk-flex uk-flex-middle uk-flex-wrap bottom-row-left uk-child-width-auto@s uk-child-width-1-3 uk-grid-collapse" uk-grid="">
+    <div>
+        <div class="form-group">
+            <label>全票</label>
+            <select name="ticketPanel:rows:0:ticketAmount" style="width: 100px;" class="uk-select">
+<option value="0F">0</option>
+<option selected="selected" value="1F">1</option>
+<option value="2F">2</option>
+<option value="3F">3</option>
+<option value="4F">4</option>
+<option value="5F">5</option>
+<option value="6F">6</option>
+<option value="7F">7</option>
+<option value="8F">8</option>
+<option value="9F">9</option>
+<option value="10F">10</option>
+</select>
+        </div>
+    </div><div>
+        <div class="form-group">
+            <label>孩童票<font style="font-size: smaller;">(6-11)</font></label>
+            <select name="ticketPanel:rows:1:ticketAmount" style="width: 100px;" class="uk-select">
+<option selected="selected" value="0H">0</option>
+<option value="1H">1</option>
+<option value="2H">2</option>
+<option value="3H">3</option>
+<option value="4H">4</option>
+<option value="5H">5</option>
+<option value="6H">6</option>
+<option value="7H">7</option>
+<option value="8H">8</option>
+<option value="9H">9</option>
+<option value="10H">10</option>
+</select>
+        </div>
+    </div><div>
+        <div class="form-group">
+            <label>愛心票</label>
+            <select name="ticketPanel:rows:2:ticketAmount" style="width: 100px;" class="uk-select">
+<option selected="selected" value="0W">0</option>
+<option value="1W">1</option>
+<option value="2W">2</option>
+<option value="3W">3</option>
+<option value="4W">4</option>
+<option value="5W">5</option>
+<option value="6W">6</option>
+<option value="7W">7</option>
+<option value="8W">8</option>
+<option value="9W">9</option>
+<option value="10W">10</option>
+</select>
+        </div>
+    </div><div>
+        <div class="form-group">
+            <label>敬老票<font style="font-size: smaller;">(65+)</font></label>
+            <select name="ticketPanel:rows:3:ticketAmount" style="width: 100px;" class="uk-select">
+<option selected="selected" value="0E">0</option>
+<option value="1E">1</option>
+<option value="2E">2</option>
+<option value="3E">3</option>
+<option value="4E">4</option>
+<option value="5E">5</option>
+<option value="6E">6</option>
+<option value="7E">7</option>
+<option value="8E">8</option>
+<option value="9E">9</option>
+<option value="10E">10</option>
+</select>
+        </div>
+    </div><div>
+        <div class="form-group">
+            <label>大學生票</label>
+            <select name="ticketPanel:rows:4:ticketAmount" style="width: 100px;" class="uk-select">
+<option selected="selected" value="0P">0</option>
+<option value="1P">1</option>
+<option value="2P">2</option>
+<option value="3P">3</option>
+<option value="4P">4</option>
+<option value="5P">5</option>
+<option value="6P">6</option>
+<option value="7P">7</option>
+<option value="8P">8</option>
+<option value="9P">9</option>
+<option value="10P">10</option>
+</select>
+        </div>
+    </div>     
+</div>
+
+                                    <!-- Right -->
+                                    <!-- 
+                                    <div class="bottom-row-right uk-flex uk-flex-middle">
+                                        <div class="form-group uk-flex uk-flex-middle" wicket:id="homeCaptcha">
+                                            <img wicket:id="passCode" height="54px" class="captcha-img">
+                                            <input class="uk-input" id="securityCode" type="text" size="5" wicket:id="securityCode" />
+                                            <div class="ctrl-group">
+                                                <button type="button" class="btn-reload" wicket:id="reCodeLink">
+                                                    <span class="material-icons" wicket:message="title=bookingS3Regenerate">cached</span>
+                                                </button>
+                                                <span class="divider">｜</span>
+                                                <button type="button" class="btn-speak" wicket:id="soundLink">
+                                                    <span class="material-icons" wicket:message="title=bookingS3PlayAudio">volume_up</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    -->
+                                </div>
+                                
+                                <!-- ## EXTRA ROW ## -->
+                                <div class="uk-flex uk-flex-between form-bottom-row uk-child-width-auto@s uk-child-width-1-1 uk-grid-collapse" uk-grid>
+                                    <!-- Left -->
+									<!-- <div class="uk-child-width-1-1 uk-child-width-1-2@m form-mid-row uk-grid-small" uk-grid> -->
+									<!-- <div class="uk-grid uk-child-width-1-1 uk-child-width-1-2@m uk-grid-small"> -->
+									<!-- <div class="uk-flex uk-flex-middle uk-flex-wrap bottom-row-left uk-child-width-auto@s uk-child-width-1-3 uk-grid-collapse" uk-grid wicket:id="ticketPanel"></div> -->
+									<div class="uk-flex uk-flex-middle uk-flex-wrap bottom-row-mid uk-child-width-1-1 uk-grid-collapse" uk-grid="">
+                                   		<div>
+                                        	<div class="form-group">
+										    	<span class="material-icons-outlined">train</span>
+												<label for="">車次需求</label>
+												<select name="trainTypeContainer:typesoftrain" class="uk-select" trainTypeSearchAfterDays="5">
+<option selected="selected" value="0">&#25152;&#26377;&#36554;&#27425;</option>
+<option value="1">&#38480;&#23450;&#26089;&#40165;&#20778;&#24800;&#36554;&#27425;</option>
+<option value="2">&#28961;&#38656;&#26089;&#40165;(&#20840;&#31080;&#20197;&#21407;&#20729;&#35336;)</option>
+</select>
+                                            </div>
+                                            <span id="earlyBirdSingleMsg" hidden="hidden">※ 早鳥優惠僅適用單程訂票</span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Right -->
+                                    <div class="bottom-row-right uk-flex uk-flex-middle">
+                                        <div class="form-group uk-flex uk-flex-middle">
+                                            <img id="BookingS1Form_homeCaptcha_passCode" class="captcha-img" src="/IMINT/captImg/rHE3V7VGcO.jpg" height="54px">
+                                            <input size="4" name="homeCaptcha:securityCode" id="securityCode" type="text" class="uk-input" value=""/>
+                                            <div class="ctrl-group">
+                                                <button id="BookingS1Form_homeCaptcha_reCodeLink" type="button" class="btn-reload" onclick="var wcall=wicketAjaxGet('/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:interface=:0:BookingS1Form:homeCaptcha:reCodeLink::IBehaviorListener&wicket:behaviorId=0', function() { }, function() { });return !wcall;">
+                                                    <span title="重新產生" class="material-icons" wicket:message="title=bookingS3Regenerate">cached</span>
+                                                </button>
+                                                <span class="divider">｜</span>
+                                                <button type="button" class="btn-speak" onclick="window.location.href='/IMINT/;jsessionid=236F2AB2CEFA69F4AE803B613FC8081C?wicket:interface=:0:BookingS1Form:homeCaptcha:soundLink::ILinkListener';">
+                                                    <span title="語音播放" class="material-icons" wicket:message="title=bookingS3PlayAudio">volume_up</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- ## EXTRA ROW ## -->
+                                <!-- 
+                                <div class="form-extra-row">
+                                    <label wicket:id="offPeakTrainSearchContainer">
+                                        <input wicket:id="onlyQueryOffPeak" class="uk-checkbox" type="checkbox" id="onlyQueryOffPeakCheckBox" /><span id="onlyQueryOffPeakMsg" wicket:id="onlyQueryOffPeakMsg"></span>
+                                    </label>
+                                </div>
+                                 -->
+
+                                <!-- ## SUBMIT BTN ## -->
+                                <input name="SubmitButton" id="SubmitButton" type="submit" class="uk-align-center uk-button uk-button-primary" value="開始查詢"/>
+                                
+                                <div id="action" style="display: none;">
+                                    <input name="portalTag" id="portalTag" type="hidden" value="false"/>
+                                    <input name="startTimeForTeenager" id="startTimeForTeenager" type="hidden" value="2023/07/01"/>
+                                    <input name="endTimeForTeenager" id="endTimeForTeenager" type="hidden" value="2023/08/31"/>
+                                    <input name="isShowTeenager" id="isShowTeenager" type="hidden" value="0"/>
+                                </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                    
+                </main>
+            </div>
+
+            
+
+    <div class="feature-wrapper">
+        <div class="uk-container">
+            <section class="feature-group uk-child-width-1-1 uk-child-width-1-3@m uk-grid-small" uk-grid>
+                <!-- F1 -->
+                <div>
+                    <a rel="noopener" href="https://www.thsrc.com.tw/ArticleContent/dea241a9-fe69-4e9d-b9a5-6caed6e486d6" class="feature-item uk-flex uk-flex-between uk-flex-middle" target="_blank" onclick="gtag('event', 'Click', {'event_category': 'IRS_Home','event_label': 'Feature_了解網路訂票'});">
+                        <div class="uk-flex">
+                            <!-- Left -->
+                            <div class="left">
+                                <span class="material-icons">book_online</span>
+                            </div>
+                            <!-- Right -->
+                            <div class="right">
+                                <p class="feature-title">了解網路訂票</p>
+                                <p class="feature-description">訂票免出門 24H為您服務</p>
+                            </div>
+                        </div>
+                        <div class="icon-arrow">
+                            <span class="material-icons">arrow_forward</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- F2 -->
+                <div>
+                    <a rel="noopener" href="https://www.thsrc.com.tw/ArticleContent/4d262503-84bc-4963-a58e-4ca1a6453ad3" class="feature-item uk-flex uk-flex-between uk-flex-middle" target="_blank" onclick="gtag('event', 'Click', {'event_category': 'IRS_Home','event_label': 'Feature_T-EX 行動購票'});">
+                        <div class="uk-flex">
+                            <!-- Left -->
+                            <div class="left">
+                                <span class="material-icons">qr_code_2</span>
+                            </div>
+                            <!-- Right -->
+                            <div class="right">
+                                <p class="feature-title">T-EX 行動購票</p>
+                                <p class="feature-description">訂票+取票 輕鬆暢行</p>
+                            </div>
+                        </div>
+                        <div class="icon-arrow">
+                            <span class="material-icons">arrow_forward</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- F3 -->
+                <div>
+                    <a rel="noopener" href="https://tgo.thsrc.com.tw/index.html?utm_source=irscweb&amp;utm_medium=tgobanner&amp;utm_campaign=tgo_irsbooking" class="feature-item uk-flex uk-flex-between uk-flex-middle" target="_blank" onclick="gtag('event', 'Click', {'event_category': 'IRS_Home','event_label': 'Feature_高鐵會員 TGo'});">
+                        <div class="uk-flex">
+                            <!-- Left -->
+                            <div class="left">
+                                <span class="material-icons">people</span>
+                            </div>
+                            <!-- Right -->
+                            <div class="right">
+                                <p class="feature-title">高鐵會員 TGo</p>
+                                <p class="feature-description">購票享集點 美好多一點</p>
+                            </div>
+                        </div>
+                        <div class="icon-arrow">
+                            <span class="material-icons">arrow_forward</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <div class="notice-wrapper">
+        <div class="uk-container">
+            <!-- Notice -->
+            <section class="notice notice-card">
+                <p class="notice-title" href="#">注意事項</p>
+                <div class="">
+                    
+                </div>
+                <div class="">
+                    <ol>
+                        <li>旅客可預訂29天內（含乘車當日）至發車前1小時為止之車次，且每逢週五及週六至多可預訂四週後至週日之車票。(如因特殊事由調整開放時間，本公司將另行公告）</li>
+                        <li>每筆交易至多可預訂10張票，不限身分，去回程至多可預訂各5張。購買孩童票之兒童乘車時，建議至少需有一位成人同行為宜。</li>
+                        <li>自2023/12/01起，早鳥優惠採<font class="highlight">記名使用且僅限單程票適用</font>，購買早鳥優惠票者應填寫每位搭乘者中華民國身分證號，外籍旅客則填寫護照號碼，所填寫之證號末5碼將列印於票面。<font class="highlight">乘車時應攜帶與票面登錄證號相符之有效證件正本以供查驗，無法出示有效證件或非本人持用者，視為無票乘車，應照章補票</font>。詳情請參閱企網<a target="_blank" rel="noopener" href="https://www.thsrc.com.tw/ArticleContent/7039d17d-1463-4c14-ad93-4d491dedcad5#earlybirdid">早鳥優惠</a>說明。</li>
+                        <li>為維護您的權益，請於規定時間內完成付款。如未完成付款，本系統將自動取消訂位。</li>
+                        <li><span class="highlight">座位喜好功能係依列車訂位概況媒合您期望的座位，如該車次已無合適座位時，為讓您仍可順利完成訂票作業，將由系統自動配置座位。座位喜好功能僅適用於單人乘客。</span></li>
+                        <li>身分說明：</li>
+                        <ul>
+                            <li>孩童票購票說明：未滿12歲之兒童得購買孩童票，身高未滿115公分之兒童不佔位得免票，但應由已購全票或成年旅客陪同，且每位旅客攜帶之免票孩童以2人為限。身高超過150公分且未滿12歲兒童，或身高超過115公分且未滿6歲兒童應出示身分證明。</li>
+                            <li>敬老票購票說明：乘車當日年滿65歲(含)以上之中華民國國民，憑有效之身分證明文件得購買敬老票。</li>
+                            <li>愛心票購票說明：持有身心障礙證明之中華民國國民得購買愛心票。（身心障礙證明背面之「必要陪伴者優惠措施」欄位註記有「國內大眾運輸工具」字樣者，始提供必要陪伴者一人愛心票優惠）。如同行陪伴者為外籍人士，乘客資訊請以身心障礙旅客之姓名及身分證字號登錄。本系統目前並無提供預訂無障礙座位，若您有預訂無障礙座位之需求時，請致電高鐵客戶服務專線：4066-3000（苗栗、台東、金門、馬祖地區及行動電話請撥02-4066-3000。國際來話請撥：+886-2-4066-3000。以上皆為付費電話，依一般市話及行動電話、國際電話費率標準計費。服務時間：06:00~24:00）或請至各車站售票窗口購票。</li>
+                            <li>大學生票購票說明：中華民國大專院校在學生始得購買。持用學生票乘車時，應攜帶<font class="highlight">「學生證正本」，如學生證無當學期註冊章，須合併出示「在學證明正本」方得適用優惠。無本人有效證件者應照章補票並得加收票價差額百分之五十。</font>詳情請參閱企網<a target="_blank" rel="noopener" href="https://www.thsrc.com.tw/ArticleContent/530e869c-479d-441a-a4b4-61a8166827e9">大學生優惠活動</a>說明。</li>
+                            
+                        </ul>
+                    </ol>
+                </div>
+                <div class="">
+                    
+                </div>
+                <div class="">
+                    
+                </div>
+                <div class="">
+                    
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+
+            <span id="marqueeURL"></span>
+            <script src="/IMINT/js/rwd_marquee.1.2.min.js" type="text/javascript"></script>
+        
+
+            <!----- footer starts ----->
+            <footer>
+                <div id="footer" class="footer-links" >
+                    <p>
+                        <a rel="noopener" href="https://www.thsrc.com.tw/ArticleContent/F00BD7D4-7C62-44EC-9758-053934AE06E0" target="_blank" onclick="gtag('event', 'Footer_Click', {'event_category': 'IRS_Footer','event_label': 'Footer_常見問題'});">常見問題</a> |
+                        <a rel="noopener" href="https://www.thsrc.com.tw/ArticleContent/291d80fe-080f-4442-90d0-9a9b82f119e5" target="_blank" onclick="gtag('event', 'Footer_Click', {'event_category': 'IRS_Footer','event_label': 'Footer_交易注意事項'});">交易注意事項</a> |
+                        <a rel="noopener" href="https://www.thsrc.com.tw/ArticleContent/d1fa3bcb-a016-47e2-88c6-7b7cbed00ed5" target="_blank" onclick="gtag('event', 'Footer_Click', {'event_category': 'IRS_Footer','event_label': 'Footer_個人資料保護專區'});">個人資料保護專區</a> |
+                        <a rel="noopener" href="https://www.thsrc.com.tw/ArticleContent/dea241a9-fe69-4e9d-b9a5-6caed6e486d6" target="_blank" onclick="gtag('event', 'Footer_Click', {'event_category': 'IRS_Footer','event_label': 'Footer_網路訂票說明'});">網路訂票說明</a> |
+                        <a rel="noopener" href="https://www.thsrc.com.tw" target="_blank" onclick="gtag('event', 'Footer_Click', {'event_category': 'IRS_Footer','event_label': 'Footer_企業網站'});">企業網站</a> |
+                        <a rel="noopener" href="https://www.thsrc.com.tw/ArticleContent/AFAC38BD-AC68-419A-9B7F-E5C0EBCE3CE8" target="_blank" onclick="gtag('event', 'Footer_Click', {'event_category': 'IRS_Footer','event_label': 'Footer_聯絡我們'});">聯絡我們</a>
+                    </p>
+                </div>
+                <div class="copyright">
+                    <p>&copy; 台灣高速鐵路股份有限公司 Taiwan High Speed Rail Corporation.</p>
+                </div>
+            </footer>
+            <!----- footer ends ----->
+        
+
+        <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+        </script>
+    <noscript><img src="https://irs.thsrc.com.tw/akam/13/pixel_17addee8?a=dD0xOGZlYjllNDJhYTFlNDAwMjc2MjRiNTY2YzI4MDU4OWI2NjFjODdlJmpzPW9mZg==" style="visibility: hidden; position: absolute; left: -999px; top: -999px;" /></noscript></body>
+</html>
