@@ -64,7 +64,7 @@ func (app *Application) getOrderInDate(year int, month time.Month, day int) []mo
 	dateEnd := dateStart.Add(24 * time.Hour)
 
 	orders := []models.Order{}
-	app.db.Preload("Creator").Where("\"execDay\" >= ? AND \"execDay\" < ?", dateStart, dateEnd).Find(&orders)
+	app.db.Preload("Creator").Where("\"execDay\" >= ? AND \"execDay\" < ? AND \"status\" = ?", dateStart, dateEnd, models.OrderStatusPending).Find(&orders)
 
 	log.Printf("get %d order between %s ~ %s", len(orders), dateStart, dateEnd)
 	return orders
@@ -85,6 +85,10 @@ func (app *Application) completeOrder() {
 		crawler, err := app.pool.Get(order.Id)
 		if err != nil {
 			log.Printf("get order %d's crawler failed, err: %s", order.Id, err)
+			err := app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusFailed}).Error
+			if err != nil {
+				log.Printf("update order %d's status to %s failed, err: %s", order.Id, models.OrderStatusFailed, err)
+			}
 			continue
 		}
 
@@ -92,7 +96,16 @@ func (app *Application) completeOrder() {
 		err = crawler.CompleteOrder(order)
 		if err != nil {
 			log.Printf("complete order %+v failed, err: %s", order, err)
+			err := app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusFailed}).Error
+			if err != nil {
+				log.Printf("update order %d's status to %s failed, err: %s", order.Id, models.OrderStatusFailed, err)
+			}
 			continue
+		}
+
+		err = app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusComplete}).Error
+		if err != nil {
+			log.Printf("update order %d's status to %s failed, err: %s", order.Id, models.OrderStatusFailed, err)
 		}
 	}
 }
