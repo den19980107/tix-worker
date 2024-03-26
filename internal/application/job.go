@@ -49,19 +49,38 @@ func (app *Application) getTomorrowOrders() []models.Order {
 
 	now := time.Now().In(location)
 	tomorrowNow := now.Add(24 * time.Hour)
-	tomorrowStart := time.Date(tomorrowNow.Year(), tomorrowNow.Month(), tomorrowNow.Day(), 0, 0, 0, 0, tomorrowNow.Location()).UTC()
-	tomorrowEnd := tomorrowStart.Add(24 * time.Hour)
+
+	return app.getOrderInDate(tomorrowNow.Year(), tomorrowNow.Month(), tomorrowNow.Day())
+}
+
+func (app *Application) getOrderInDate(year int, month time.Month, day int) []models.Order {
+	location, err := time.LoadLocation("Asia/Taipei")
+	if err != nil {
+		log.Printf("get location of Asia/Taipei failed, err: %s", err)
+		return []models.Order{}
+	}
+
+	dateStart := time.Date(year, month, day, 0, 0, 0, 0, location)
+	dateEnd := dateStart.Add(24 * time.Hour)
 
 	orders := []models.Order{}
-	app.db.Preload("Creator").Where("\"execDay\" >= ? AND \"execDay\" < ?", tomorrowStart, tomorrowEnd).Find(&orders)
+	app.db.Preload("Creator").Where("\"execDay\" >= ? AND \"execDay\" < ?", dateStart, dateEnd).Find(&orders)
 
-	log.Printf("get %d order for tomorrow %s ~ %s", len(orders), tomorrowStart, tomorrowEnd)
+	log.Printf("get %d order between %s ~ %s", len(orders), dateStart, dateEnd)
 	return orders
 }
 
 func (app *Application) completeOrder() {
 	log.Printf("running complete order job ...")
-	orders := app.getTomorrowOrders()
+
+	location, err := time.LoadLocation("Asia/Taipei")
+	if err != nil {
+		log.Printf("get location of Asia/Taipei failed, err: %s", err)
+		return
+	}
+
+	now := time.Now().In(location)
+	orders := app.getOrderInDate(now.Year(), now.Month(), now.Day())
 	for _, order := range orders {
 		crawler, err := app.pool.Get(order.Id)
 		if err != nil {

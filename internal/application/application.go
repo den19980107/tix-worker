@@ -39,7 +39,6 @@ func New(db *gorm.DB) Application {
 }
 
 func (app *Application) Run() {
-	app.getOrderCaptcha()
 	app.registerJob()
 	app.registRouter()
 	app.ginEngine.Run()
