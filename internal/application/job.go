@@ -32,11 +32,13 @@ func (app *Application) getOrdersCaptcha() {
 	log.Printf("running get order captcha job ...")
 	orders := app.getTomorrowOrders()
 	for _, order := range orders {
-		log.Printf("get order %+v captcha ...", orders)
-		err := app.getOrderCaptcha(order)
-		if err != nil {
-			log.Printf("get order %+v captcha failed, err: %s", order, err)
-		}
+		go func(order models.Order) {
+			log.Printf("get %s's order captcha ...", order.Creator.Username)
+			err := app.getOrderCaptcha(order)
+			if err != nil {
+				log.Printf("get %s's order captcha failed, err: %s", order.Creator.Username, err)
+			}
+		}(order)
 	}
 }
 

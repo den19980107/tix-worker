@@ -253,7 +253,7 @@ func cloneCollectorWithBasicEvent(collector *colly.Collector, execName string) *
 		r.Headers.Add("Accept-Encoding", ACCEPT_ENCODING)
 		r.Headers.Add("Connection", "keep-alive")
 		r.Headers.Add("Content-Type", "application/x-www-form-urlencoded")
-		log.Println("Visiting", r.URL)
+		// log.Println("Visiting", r.URL)
 	})
 
 	clone.OnError(func(r *colly.Response, err error) {
@@ -261,7 +261,7 @@ func cloneCollectorWithBasicEvent(collector *colly.Collector, execName string) *
 	})
 
 	clone.OnResponse(func(r *colly.Response) {
-		log.Printf("%s on response with status code: %d", execName, r.StatusCode)
+		// log.Printf("%s on response with status code: %d", execName, r.StatusCode)
 		if r.StatusCode == 200 {
 			_ = os.WriteFile(fmt.Sprintf("%s.html", execName), r.Body, 0644)
 		}

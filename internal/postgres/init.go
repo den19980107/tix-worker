@@ -6,6 +6,7 @@ import (
 
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func Init() *gorm.DB {
@@ -17,7 +18,7 @@ func Init() *gorm.DB {
 
 	dsn := fmt.Sprintf("user=%s password=%s host=%s port=%s dbname=%s sslmode=disable", pgUser, pgPwd, pgHost, pgPort, pgDatabase)
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
-		// Logger: logger.Default.LogMode(logger.Silent),
+		Logger: logger.Default.LogMode(logger.Silent),
 	})
 
 	if err != nil {
