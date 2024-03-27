@@ -2,13 +2,14 @@ package application
 
 import (
 	"fmt"
+	"log"
 	"tix-worker/internal/crawler"
 	"tix-worker/internal/models"
 )
 
 const tixUrl = "http://192.168.31.149:3003"
 
-func (app *Application) GetOrderCaptcha(order models.Order) error {
+func (app *Application) getOrderCaptcha(order models.Order) error {
 	c := crawler.Create()
 	captcha, jsessionId, err := c.GetCaptchaImageAndJsessionId()
 	if err != nil {
@@ -26,5 +27,25 @@ func (app *Application) GetOrderCaptcha(order models.Order) error {
 	}
 
 	app.pool.Set(order.Id, c)
+	return nil
+}
+
+func (app *Application) completeOrder(order models.Order) error {
+	crawler, err := app.pool.Get(order.Id)
+	if err != nil {
+		return fmt.Errorf("get order %d's crawler failed, err: %s", order.Id, err)
+	}
+
+	log.Printf("exec order %+v ...", order)
+	err = crawler.CompleteOrder(order)
+	if err != nil {
+		return fmt.Errorf("complete order %+v failed, err: %s", order, err)
+	}
+
+	err = app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusComplete}).Error
+	if err != nil {
+		return fmt.Errorf("update order %d's status to %s failed, err: %s", order.Id, models.OrderStatusFailed, err)
+	}
+
 	return nil
 }

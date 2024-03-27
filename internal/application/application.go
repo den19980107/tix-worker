@@ -1,6 +1,7 @@
 package application
 
 import (
+	"fmt"
 	"os"
 	crawlerpool "tix-worker/internal/crawler-pool"
 	"tix-worker/internal/mail"
@@ -41,5 +42,8 @@ func New(db *gorm.DB) Application {
 func (app *Application) Run() {
 	app.registerJob()
 	app.registRouter()
-	app.ginEngine.Run()
+	err := app.ginEngine.Run()
+	if err != nil {
+		panic(fmt.Sprintf("run gin engine failed, err: %s", err))
+	}
 }

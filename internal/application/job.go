@@ -9,7 +9,7 @@ import (
 func (app *Application) registerJob() {
 	// running at every day 11:55 pm at utc time
 	_, err := app.cron.AddFunc("55 15 * * *", func() {
-		app.getOrderCaptcha()
+		app.getOrdersCaptcha()
 	})
 
 	if err != nil {
@@ -18,7 +18,7 @@ func (app *Application) registerJob() {
 
 	// running at every day 12:00 am at utc time
 	_, err = app.cron.AddFunc("00 16 * * *", func() {
-		app.completeOrder()
+		app.completeOrders()
 	})
 
 	if err != nil {
@@ -28,12 +28,12 @@ func (app *Application) registerJob() {
 	app.cron.Start()
 }
 
-func (app *Application) getOrderCaptcha() {
+func (app *Application) getOrdersCaptcha() {
 	log.Printf("running get order captcha job ...")
 	orders := app.getTomorrowOrders()
 	for _, order := range orders {
 		log.Printf("get order %+v captcha ...", orders)
-		err := app.GetOrderCaptcha(order)
+		err := app.getOrderCaptcha(order)
 		if err != nil {
 			log.Printf("get order %+v captcha failed, err: %s", order, err)
 		}
@@ -70,7 +70,7 @@ func (app *Application) getOrderInDate(year int, month time.Month, day int) []mo
 	return orders
 }
 
-func (app *Application) completeOrder() {
+func (app *Application) completeOrders() {
 	log.Printf("running complete order job ...")
 
 	location, err := time.LoadLocation("Asia/Taipei")
@@ -82,30 +82,13 @@ func (app *Application) completeOrder() {
 	now := time.Now().In(location)
 	orders := app.getOrderInDate(now.Year(), now.Month(), now.Day())
 	for _, order := range orders {
-		crawler, err := app.pool.Get(order.Id)
-		if err != nil {
-			log.Printf("get order %d's crawler failed, err: %s", order.Id, err)
-			err := app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusFailed}).Error
-			if err != nil {
-				log.Printf("update order %d's status to %s failed, err: %s", order.Id, models.OrderStatusFailed, err)
-			}
-			continue
-		}
-
-		log.Printf("exec order %+v ...", orders)
-		err = crawler.CompleteOrder(order)
+		err := app.completeOrder(order)
 		if err != nil {
 			log.Printf("complete order %+v failed, err: %s", order, err)
 			err := app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusFailed}).Error
 			if err != nil {
 				log.Printf("update order %d's status to %s failed, err: %s", order.Id, models.OrderStatusFailed, err)
 			}
-			continue
-		}
-
-		err = app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusComplete}).Error
-		if err != nil {
-			log.Printf("update order %d's status to %s failed, err: %s", order.Id, models.OrderStatusFailed, err)
 		}
 	}
 }
