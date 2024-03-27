@@ -60,7 +60,7 @@ func (app *Application) getOrderInDate(year int, month time.Month, day int) []mo
 		return []models.Order{}
 	}
 
-	dateStart := time.Date(year, month, day, 0, 0, 0, 0, location)
+	dateStart := time.Date(year, month, day, 0, 0, 0, 0, location).UTC()
 	dateEnd := dateStart.Add(24 * time.Hour)
 
 	orders := []models.Order{}
