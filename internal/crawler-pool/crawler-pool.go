@@ -6,17 +6,17 @@ import (
 )
 
 type CrawlerPool struct {
-	m map[int]crawler.Crawler
+	m map[int]*crawler.Crawler
 }
 
 func New() CrawlerPool {
 	return CrawlerPool{
-		m: map[int]crawler.Crawler{},
+		m: map[int]*crawler.Crawler{},
 	}
 }
 
 func (pool *CrawlerPool) Set(id int, crawler crawler.Crawler) {
-	pool.m[id] = crawler
+	pool.m[id] = &crawler
 }
 
 func (pool *CrawlerPool) Get(id int) (*crawler.Crawler, error) {
@@ -25,5 +25,5 @@ func (pool *CrawlerPool) Get(id int) (*crawler.Crawler, error) {
 		return nil, fmt.Errorf("crawler of id %d not exist", id)
 	}
 
-	return &c, nil
+	return c, nil
 }

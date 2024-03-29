@@ -18,7 +18,7 @@ func (app *Application) getOrderCaptcha(order models.Order) error {
 
 	err = app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Captcha: captcha, JsessionId: jsessionId}).Error
 	if err != nil {
-		return fmt.Errorf("update order captcha and jsession id failed, err: %s", err)
+		return fmt.Errorf("update order: %d captcha and jsession id failed, err: %s", order.Id, err)
 	}
 
 	err = app.mail.Send(order.Creator.Username, fmt.Sprintf("請至 %s/order/thsrc/%d 填寫驗證碼", tixUrl, order.Id))

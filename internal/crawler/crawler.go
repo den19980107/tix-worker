@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"os"
 	"sync"
+	"time"
 	"tix-worker/internal/models"
 
 	"github.com/gocolly/colly/v2"
@@ -122,6 +123,11 @@ func (c *Crawler) GetCaptchaImageAndJsessionId() (imageBase64 string, jsessionId
 }
 
 func (c *Crawler) submitForm(order models.Order, captchaResult string, jsessionId string) ([]TrainData, []FeedBackError, error) {
+	location, err := time.LoadLocation("Asia/Taipei")
+	if err != nil {
+		return nil, nil, fmt.Errorf("get location of Asia/Taipei failed, err: %s", err)
+	}
+
 	submitForm := SubmitForm{
 		TripConTypesoftrip:            "0",
 		TrainConTrainRadioGroup:       "0",
@@ -129,8 +135,8 @@ func (c *Crawler) submitForm(order models.Order, captchaResult string, jsessionI
 		BookingMethod:                 "radio31",
 		SelectStartStation:            order.From.Code(),
 		SelectDestinationStation:      order.To.Code(),
-		ToTimeInputField:              order.DepartureDay.Local().Format("2006/01/02"),
-		BackTimeInputField:            order.DepartureDay.Local().Format("2006/01/02"),
+		ToTimeInputField:              order.DepartureDay.In(location).Format("2006/01/02"),
+		BackTimeInputField:            order.DepartureDay.In(location).Format("2006/01/02"),
 		ToTimeTable:                   order.GetStartTime(),
 		TicketPanelRows0TicketAmount:  "1F",
 		TicketPanelRows1TicketAmount:  "0H",
@@ -143,7 +149,7 @@ func (c *Crawler) submitForm(order models.Order, captchaResult string, jsessionI
 	submitJsonStr, _ := json.MarshalIndent(submitForm, "", " ")
 	log.Printf("form:\n%s", submitJsonStr)
 	submitBody := make(map[string]string)
-	err := json.Unmarshal(submitJsonStr, &submitBody)
+	err = json.Unmarshal(submitJsonStr, &submitBody)
 	if err != nil {
 		return nil, nil, err
 	}

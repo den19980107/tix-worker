@@ -1,6 +1,7 @@
 package application
 
 import (
+	"log"
 	"net/http"
 	"tix-worker/internal/models"
 
@@ -25,6 +26,7 @@ func (app *Application) setCaptcha(c *gin.Context) {
 		return
 	}
 
+	log.Printf("set captcha \"%s\" to crawler", body.Captcha)
 	crawler.SetCaptcha(body.Captcha)
 	c.JSON(http.StatusOK, nil)
 }
