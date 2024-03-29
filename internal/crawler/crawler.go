@@ -95,6 +95,10 @@ func (c *Crawler) CompleteOrder(order models.Order) error {
 		}
 	}
 
+	if len(validTrain) == 0 {
+		return errors.New("no valid train avaliable")
+	}
+
 	err = c.confirmTrain(validTrain[0])
 	if err != nil {
 		return fmt.Errorf("confirm train failed, err: %s", err)
