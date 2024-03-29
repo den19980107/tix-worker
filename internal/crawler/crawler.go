@@ -76,7 +76,26 @@ func (c *Crawler) CompleteOrder(order models.Order) error {
 		return errors.New("no train avaliable")
 	}
 
-	err = c.confirmTrain(trainDatas[0])
+	validTrain := []TrainData{}
+	for _, trainData := range trainDatas {
+		trainStartHour, err := trainData.getStartHour()
+		if err != nil {
+			log.Printf("failed to get train start time, err: %s", err)
+			continue
+		}
+
+		trainStartMin, err := trainData.getStartMin()
+		if err != nil {
+			log.Printf("failed to get train end time, err: %s", err)
+			continue
+		}
+
+		if trainStartHour >= order.GetStartHour() && trainStartHour <= order.GetEndHour() && trainStartMin >= order.GetStartMin() && trainStartMin <= order.GetEndMin() {
+			validTrain = append(validTrain, trainData)
+		}
+	}
+
+	err = c.confirmTrain(validTrain[0])
 	if err != nil {
 		return fmt.Errorf("confirm train failed, err: %s", err)
 	}
@@ -171,16 +190,23 @@ func (c *Crawler) submitForm(order models.Order, captchaResult string, jsessionI
 	})
 
 	// if predict succes, should get response of list of train
-	collector.OnHTML("div[class='result-listing']", func(h *colly.HTMLElement) {
+	collector.OnHTML("div[class='result-listing']", func(resultList *colly.HTMLElement) {
 		log.Printf("on html get result")
-		h.ForEach("div[class='btn-radio']", func(i int, h *colly.HTMLElement) {
+		resultList.ForEach("label[class='uk-flex uk-flex-middle result-item']", func(i int, resultItem *colly.HTMLElement) {
+			trainCode := resultItem.ChildText("#QueryCode")
+			departureTime := resultItem.ChildText("#QueryDeparture")
+			arrivalTime := resultItem.ChildText("#QueryArrival")
+			departureDate := resultItem.ChildText("#QueryDepartureDate")
+			value := resultItem.ChildAttr(".btn-radio > input", "value")
+
 			trainData := TrainData{
-				TrainCode:     h.ChildAttr("input[name='TrainQueryDataViewPanel:TrainGroup']", "QueryCode"),
-				DepartureTime: h.ChildAttr("input[name='TrainQueryDataViewPanel:TrainGroup']", "QueryDeparture"),
-				ArrivalTime:   h.ChildAttr("input[name='TrainQueryDataViewPanel:TrainGroup']", "QueryArrival"),
-				Date:          h.ChildAttr("input[name='TrainQueryDataViewPanel:TrainGroup']", "QueryDepartureDate"),
-				Value:         h.ChildAttr("input[name='TrainQueryDataViewPanel:TrainGroup']", "value"),
+				TrainCode:     trainCode,
+				Value:         value,
+				Date:          departureDate,
+				DepartureTime: departureTime,
+				ArrivalTime:   arrivalTime,
 			}
+
 			log.Printf("get train data %+v", trainData)
 			trainDatas = append(trainDatas, trainData)
 		})

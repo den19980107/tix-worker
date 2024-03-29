@@ -1,5 +1,11 @@
 package crawler
 
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
 type ConfirmTrain struct {
 	BookingS2FormHf0                  string `json:"BookingS2Form:hf:0"`
 	TrainQueryDataViewPanelTrainGroup string `json:"TrainQueryDataViewPanel:TrainGroup"`
@@ -49,4 +55,22 @@ type TrainData struct {
 	Date          string
 	DepartureTime string
 	ArrivalTime   string
+}
+
+func (t TrainData) getStartHour() (int, error) {
+	parts := strings.Split(t.DepartureTime, ":")
+	if len(parts) != 2 {
+		return 0, fmt.Errorf("departure time \"%s\" format not correct", t.DepartureTime)
+	}
+
+	return strconv.Atoi(parts[0])
+}
+
+func (t TrainData) getStartMin() (int, error) {
+	parts := strings.Split(t.DepartureTime, ":")
+	if len(parts) != 2 {
+		return 0, fmt.Errorf("departure time \"%s\" format not correct", t.DepartureTime)
+	}
+
+	return strconv.Atoi(parts[1])
 }

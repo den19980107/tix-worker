@@ -55,3 +55,27 @@ func (o Order) GetStartTime() string {
 
 	return fmt.Sprintf("%d%s%s", hour, minStr, meridiem)
 }
+
+// TODO: 檢查 start time 格式
+func (o Order) GetStartHour() int {
+	hour, _ := strconv.Atoi(strings.Split(o.StartTime, ":")[0])
+	return hour
+}
+
+// TODO: 檢查 start time 格式
+func (o Order) GetStartMin() int {
+	min, _ := strconv.Atoi(strings.Split(o.StartTime, ":")[1])
+	return min
+}
+
+// TODO: 檢查 end time 格式
+func (o Order) GetEndHour() int {
+	hour, _ := strconv.Atoi(strings.Split(o.EndTime, ":")[0])
+	return hour
+}
+
+// TODO: 檢查 end time 格式
+func (o Order) GetEndMin() int {
+	min, _ := strconv.Atoi(strings.Split(o.EndTime, ":")[1])
+	return min
+}
