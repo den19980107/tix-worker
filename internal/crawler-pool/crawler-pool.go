@@ -2,6 +2,7 @@ package crawlerpool
 
 import (
 	"fmt"
+	"log"
 	"tix-worker/internal/crawler"
 )
 
@@ -26,4 +27,14 @@ func (pool *CrawlerPool) Get(id int) (*crawler.Crawler, error) {
 	}
 
 	return c, nil
+}
+
+func (pool *CrawlerPool) Remove(id int) {
+	_, exist := pool.m[id]
+	if !exist {
+		log.Printf("crawler of id %d not exist", id)
+		return
+	}
+
+	delete(pool.m, id)
 }

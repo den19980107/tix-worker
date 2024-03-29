@@ -35,6 +35,7 @@ func (app *Application) completeOrder(order models.Order) error {
 	if err != nil {
 		return fmt.Errorf("get order %d's crawler failed, err: %s", order.Id, err)
 	}
+	defer app.pool.Remove(order.Id)
 
 	log.Printf("exec order %+v ...", order)
 	err = crawler.CompleteOrder(order)
