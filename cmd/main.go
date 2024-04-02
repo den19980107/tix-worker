@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"tix-worker/internal/application"
 	"tix-worker/internal/postgres"
@@ -10,7 +11,10 @@ import (
 )
 
 func main() {
-	if os.Getenv("ENV") != "production" {
+	env := os.Getenv("ENV")
+
+	log.Printf("env is %s", env)
+	if env != "production" {
 		err := godotenv.Load()
 		if err != nil {
 			panic(fmt.Sprintf("failed to load env, err: %s", err))
