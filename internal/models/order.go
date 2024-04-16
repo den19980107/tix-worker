@@ -22,6 +22,7 @@ type Order struct {
 	Captcha      string      `gorm:"column:captcha"`
 	JsessionId   string      `gorm:"column:jsessionId"`
 	Status       OrderStatus `gorm:"column:status"`
+	ErrorMessage string      `gorm:"column:errorMessage"`
 }
 
 type OrderStatus string

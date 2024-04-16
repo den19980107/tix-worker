@@ -40,7 +40,7 @@ func (app *Application) completeOrder(order models.Order) error {
 	log.Printf("exec order %+v ...", order)
 	err = crawler.CompleteOrder(order)
 	if err != nil {
-		return fmt.Errorf("complete order %+v failed, err: %s", order, err)
+		return err
 	}
 
 	err = app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusComplete}).Error

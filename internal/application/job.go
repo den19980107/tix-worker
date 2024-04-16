@@ -87,7 +87,7 @@ func (app *Application) completeOrders() {
 		err := app.completeOrder(order)
 		if err != nil {
 			log.Printf("complete order %+v failed, err: %s", order, err)
-			err := app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusFailed}).Error
+			err := app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusFailed, ErrorMessage: err.Error()}).Error
 			if err != nil {
 				log.Printf("update order %d's status to %s failed, err: %s", order.Id, models.OrderStatusFailed, err)
 			}
