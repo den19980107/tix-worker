@@ -73,12 +73,12 @@ func (c *Crawler) CompleteOrder(order models.Order) error {
 	}
 
 	if len(trainDatas) == 0 {
-		return errors.New("no train avaliable")
+		return errors.New("所選時間內沒有票可以購買")
 	}
 
 	validTrain := c.filterValidTrain(order, trainDatas)
 	if len(validTrain) == 0 {
-		return errors.New("no valid train avaliable")
+		return errors.New("沒有符合條件的票可以購買")
 	}
 
 	err = c.confirmTrain(validTrain[0])
