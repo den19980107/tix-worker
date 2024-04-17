@@ -76,25 +76,7 @@ func (c *Crawler) CompleteOrder(order models.Order) error {
 		return errors.New("no train avaliable")
 	}
 
-	validTrain := []TrainData{}
-	for _, trainData := range trainDatas {
-		trainStartHour, err := trainData.getStartHour()
-		if err != nil {
-			log.Printf("failed to get train start time, err: %s", err)
-			continue
-		}
-
-		trainStartMin, err := trainData.getStartMin()
-		if err != nil {
-			log.Printf("failed to get train end time, err: %s", err)
-			continue
-		}
-
-		if trainStartHour >= order.GetStartHour() && trainStartHour <= order.GetEndHour() && trainStartMin >= order.GetStartMin() && trainStartMin <= order.GetEndMin() {
-			validTrain = append(validTrain, trainData)
-		}
-	}
-
+	validTrain := c.filterValidTrain(order, trainDatas)
 	if len(validTrain) == 0 {
 		return errors.New("no valid train avaliable")
 	}
@@ -349,4 +331,31 @@ func imageUrlToBase64(URL string) (string, error) {
 	}
 	encodedStr := base64.StdEncoding.EncodeToString(buf.Bytes())
 	return encodedStr, nil
+}
+
+func (c *Crawler) filterValidTrain(order models.Order, trainDatas []TrainData) []TrainData {
+	validTrains := []TrainData{}
+	for _, trainData := range trainDatas {
+		trainDepartureHour, err := trainData.getHour()
+		if err != nil {
+			log.Printf("failed to get train departure hour, err: %s", err)
+			continue
+		}
+
+		trainDepartureMin, err := trainData.getMin()
+		if err != nil {
+			log.Printf("failed to get train departue min, err: %s", err)
+			continue
+		}
+
+		trainDepartureTime := time.Date(order.DepartureDay.Year(), order.DepartureDay.Month(), order.DepartureDay.Day(), trainDepartureHour, trainDepartureMin, 0, 0, order.DepartureDay.Location())
+		validStartTime := time.Date(order.DepartureDay.Year(), order.DepartureDay.Month(), order.DepartureDay.Day(), order.GetStartHour(), order.GetStartMin(), 0, 0, order.DepartureDay.Location())
+		validEndTime := time.Date(order.DepartureDay.Year(), order.DepartureDay.Month(), order.DepartureDay.Day(), order.GetEndHour(), order.GetEndMin(), 0, 0, order.DepartureDay.Location())
+
+		if trainDepartureTime.Equal(validStartTime) || trainDepartureTime.After(validStartTime) && trainDepartureTime.Before(validEndTime) || trainDepartureTime.Equal(validEndTime) {
+			validTrains = append(validTrains, trainData)
+		}
+	}
+
+	return validTrains
 }

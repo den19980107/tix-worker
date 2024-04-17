@@ -57,7 +57,7 @@ type TrainData struct {
 	ArrivalTime   string
 }
 
-func (t TrainData) getStartHour() (int, error) {
+func (t TrainData) getHour() (int, error) {
 	parts := strings.Split(t.DepartureTime, ":")
 	if len(parts) != 2 {
 		return 0, fmt.Errorf("departure time \"%s\" format not correct", t.DepartureTime)
@@ -66,7 +66,7 @@ func (t TrainData) getStartHour() (int, error) {
 	return strconv.Atoi(parts[0])
 }
 
-func (t TrainData) getStartMin() (int, error) {
+func (t TrainData) getMin() (int, error) {
 	parts := strings.Split(t.DepartureTime, ":")
 	if len(parts) != 2 {
 		return 0, fmt.Errorf("departure time \"%s\" format not correct", t.DepartureTime)
