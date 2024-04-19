@@ -7,8 +7,6 @@ import (
 	"tix-worker/internal/models"
 )
 
-const tixUrl = "http://192.168.31.149:3003"
-
 func (app *Application) getOrderCaptcha(order models.Order) error {
 	c := crawler.Create()
 	captcha, jsessionId, err := c.GetCaptchaImageAndJsessionId()
@@ -21,7 +19,7 @@ func (app *Application) getOrderCaptcha(order models.Order) error {
 		return fmt.Errorf("update order: %d captcha and jsession id failed, err: %s", order.Id, err)
 	}
 
-	err = app.mail.Send(order.Creator.Username, fmt.Sprintf("請至 %s/order/thsrc/%d 填寫驗證碼", tixUrl, order.Id))
+	err = app.mail.Send(order.Creator.Username, fmt.Sprintf("請至 %s/order/thsrc/%d 填寫驗證碼", app.tixUrl, order.Id))
 	if err != nil {
 		return err
 	}

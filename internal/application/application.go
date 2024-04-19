@@ -19,6 +19,7 @@ type Application struct {
 	pool      crawlerpool.CrawlerPool
 	cron      *cron.Cron
 	mail      mail.Mail
+	tixUrl    string
 }
 
 func New(db *gorm.DB) Application {
@@ -29,6 +30,7 @@ func New(db *gorm.DB) Application {
 	mailPwd := os.Getenv("MAIL_PASSWORD")
 	mailSmtpHost := os.Getenv("MAIL_SMTP_HOST")
 	mailSmtpPort := os.Getenv("MAIL_SMTP_PORT")
+	tixUrl := os.Getenv("NEXTAUTH_URL")
 
 	return Application{
 		db:        db,
@@ -36,6 +38,7 @@ func New(db *gorm.DB) Application {
 		pool:      crawlerpool.New(),
 		cron:      cron.New(),
 		mail:      mail.New(mailUser, mailPwd, mailSmtpHost, mailSmtpPort),
+		tixUrl:    tixUrl,
 	}
 }
 
