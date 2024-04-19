@@ -235,13 +235,14 @@ func (c *Crawler) confirmTrain(trainData TrainData) error {
 		TrainQueryDataViewPanelTrainGroup: trainData.Value,
 	}
 
-	confirmTrainJsonStr, _ := json.Marshal(confirmTrainForm)
+	confirmTrainJsonStr, _ := json.MarshalIndent(confirmTrainForm, "", " ")
 	confirmTrainBody := make(map[string]string)
 	err := json.Unmarshal(confirmTrainJsonStr, &confirmTrainBody)
 	if err != nil {
 		return fmt.Errorf("unmarshal confirm train json string failed, err: %s", err)
 	}
 
+	log.Printf("[confirm train] url: %s, body:\n%s", CONFIRM_TRAIN_URL, confirmTrainJsonStr)
 	return collector.Post(CONFIRM_TRAIN_URL, confirmTrainBody)
 }
 
@@ -260,15 +261,16 @@ func (c *Crawler) confirmTicket(order models.Order) error {
 		DummyPhone:         order.Creator.PhoneNumber,
 		Email:              order.Creator.Username,
 		Agree:              "on",
-		TicketMemberSystemInputPanelTakerMemberSystemDataViewMemberSystemRadioGroup: "radio44",
+		TicketMemberSystemInputPanelTakerMemberSystemDataViewMemberSystemRadioGroup: "radio45",
 	}
-	confirmTicketJsonStr, _ := json.Marshal(confirmTicketForm)
+	confirmTicketJsonStr, _ := json.MarshalIndent(confirmTicketForm, "", " ")
 	confirmTicketBody := make(map[string]string)
 	err := json.Unmarshal(confirmTicketJsonStr, &confirmTicketBody)
 	if err != nil {
 		return fmt.Errorf("unmarshal confirm ticket json string failed, err: %s", err)
 	}
 
+	log.Printf("[confirm ticket] url: %s, body:\n%s", CONFIRM_TICKET_URL, confirmTicketJsonStr)
 	return collector.Post(CONFIRM_TICKET_URL, confirmTicketBody)
 }
 
