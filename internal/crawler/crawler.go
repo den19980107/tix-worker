@@ -180,12 +180,6 @@ func (c *Crawler) submitForm(order models.Order, captchaResult string, jsessionI
 		log.Printf("on html get error content")
 		h.ForEachWithBreak("li", func(i int, h *colly.HTMLElement) bool {
 			feedBackError := GetFeedBackError(h.Text)
-			// if <li> dosent contain the knowed error message, continue
-			if feedBackError.Type == Unknow {
-				return true
-			}
-
-			// if <li> have knowed error message, append to the feed back error and break
 			feedBackErrors = append(feedBackErrors, feedBackError)
 			return false
 		})
