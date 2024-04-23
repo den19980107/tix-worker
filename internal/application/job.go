@@ -75,6 +75,8 @@ func (app *Application) getOrderInDate(year int, month time.Month, day int) []mo
 }
 
 func (app *Application) completeOrders() {
+	// 測試 delay 10 秒能不能搶票
+	time.Sleep(10 * time.Second)
 	log.Printf("running complete order job ...")
 
 	location, err := time.LoadLocation("Asia/Taipei")
