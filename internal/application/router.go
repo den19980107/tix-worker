@@ -2,10 +2,8 @@ package application
 
 import (
 	"fmt"
-	"log"
 	"net/http"
 	"strconv"
-	"time"
 	"tix-worker/internal/models"
 
 	"github.com/gin-gonic/gin"
@@ -82,13 +80,6 @@ func (app *Application) handleGetOrderCaptcha(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("get order captcha failed, err: %s", err)})
 		return
 	}
-
-	go func() {
-		time.Sleep(4*time.Minute + 30*time.Second)
-		if err := app.completeOrder(order); err != nil {
-			log.Printf("complete order failed, err: %s", err)
-		}
-	}()
 
 	c.JSON(http.StatusOK, nil)
 }
