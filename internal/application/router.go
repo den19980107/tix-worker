@@ -13,26 +13,49 @@ import (
 
 func (app *Application) registRouter() {
 	api := app.ginEngine.Group("/api")
-	api.POST("/order/setCaptcha", app.handleSetCaptcha)
+	api.POST("/order/:id/completeOrder", app.handleCompleteOrder)
 	api.POST("/order/:id/getCaptcha", app.handleGetOrderCaptcha)
-	api.POST("/order/:id/complete", app.handleCompleteOrder)
 }
 
-func (app *Application) handleSetCaptcha(c *gin.Context) {
+func (app *Application) handleCompleteOrder(c *gin.Context) {
+	id := c.Param("id")
+	if id == "" {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "id should not be empty"})
+		return
+	}
+
+	orderId, err := strconv.Atoi(id)
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "id's type should be number"})
+		return
+	}
+
 	body := models.CompleteOrderBody{}
 	if err := c.Bind(&body); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	crawler, err := app.pool.Get(body.Id)
+	crawler, err := app.pool.Get(orderId)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
-	log.Printf("set captcha \"%s\" to crawler", body.Captcha)
 	crawler.SetCaptcha(body.Captcha)
+
+	order, err := app.getOrderById(orderId)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("get order failed, err:% s", err)})
+		return
+	}
+
+	err = crawler.CompleteOrder(*order)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("complete order failed, err:% s", err)})
+		return
+	}
+
 	c.JSON(http.StatusOK, nil)
 }
 
@@ -66,33 +89,6 @@ func (app *Application) handleGetOrderCaptcha(c *gin.Context) {
 			log.Printf("complete order failed, err: %s", err)
 		}
 	}()
-
-	c.JSON(http.StatusOK, nil)
-}
-
-func (app *Application) handleCompleteOrder(c *gin.Context) {
-	id := c.Param("id")
-	if id == "" {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "id should not be empty"})
-		return
-	}
-
-	orderId, err := strconv.Atoi(id)
-	if err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "id's type should be number"})
-		return
-	}
-
-	order := models.Order{}
-	if err := app.db.Preload("Creator").Where("id = ?", orderId).First(&order).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("order not found, err: %s", err)})
-		return
-	}
-
-	if err := app.completeOrder(order); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("complete order failed, err: %s", err)})
-		return
-	}
 
 	c.JSON(http.StatusOK, nil)
 }

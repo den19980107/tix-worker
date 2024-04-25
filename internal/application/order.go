@@ -48,3 +48,12 @@ func (app *Application) completeOrder(order models.Order) error {
 
 	return nil
 }
+
+func (app *Application) getOrderById(orderId int) (*models.Order, error) {
+	order := models.Order{}
+	if err := app.db.Preload("Creator").Where("id = ?", orderId).First(&order).Error; err != nil {
+		return nil, err
+	}
+
+	return &order, nil
+}

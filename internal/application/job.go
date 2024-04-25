@@ -8,8 +8,8 @@ import (
 
 func (app *Application) registerJob() {
 	// running at every day 11:59 pm at utc time
-	log.Println("add get order captcha job at 11:56 pm")
-	_, err := app.cron.AddFunc("56 15 * * *", func() {
+	log.Println("add get order captcha job at 12:00 pm")
+	_, err := app.cron.AddFunc("00 16 * * *", func() {
 		app.getOrdersCaptcha()
 	})
 
