@@ -2,13 +2,12 @@ package application
 
 import (
 	"fmt"
-	"log"
 	"tix-worker/internal/crawler"
 	"tix-worker/internal/models"
 )
 
 func (app *Application) getOrderCaptcha(order models.Order) error {
-	c := crawler.Create()
+	c := crawler.Create(order)
 	captcha, jsessionId, err := c.GetCaptchaImageAndJsessionId()
 	if err != nil {
 		return fmt.Errorf("get captcha image and jsession id failed, err: %s", err)
@@ -26,34 +25,4 @@ func (app *Application) getOrderCaptcha(order models.Order) error {
 
 	app.pool.Set(order.Id, c)
 	return nil
-}
-
-func (app *Application) completeOrder(order models.Order) error {
-	crawler, err := app.pool.Get(order.Id)
-	if err != nil {
-		return fmt.Errorf("get order %d's crawler failed, err: %s", order.Id, err)
-	}
-	defer app.pool.Remove(order.Id)
-
-	log.Printf("exec order %+v ...", order)
-	err = crawler.CompleteOrder(order)
-	if err != nil {
-		return err
-	}
-
-	err = app.db.Model(&models.Order{}).Where("id = ?", order.Id).Updates(models.Order{Status: models.OrderStatusComplete}).Error
-	if err != nil {
-		return fmt.Errorf("update order %d's status to %s failed, err: %s", order.Id, models.OrderStatusFailed, err)
-	}
-
-	return nil
-}
-
-func (app *Application) getOrderById(orderId int) (*models.Order, error) {
-	order := models.Order{}
-	if err := app.db.Preload("Creator").Where("id = ?", orderId).First(&order).Error; err != nil {
-		return nil, err
-	}
-
-	return &order, nil
 }

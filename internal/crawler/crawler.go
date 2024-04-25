@@ -35,10 +35,12 @@ const (
 type Crawler struct {
 	collector *colly.Collector
 	captcha   *string
+	order     models.Order
 }
 
-func Create() Crawler {
+func Create(order models.Order) Crawler {
 	return Crawler{
+		order: order,
 		collector: colly.NewCollector(
 			colly.AllowURLRevisit(),
 			colly.MaxDepth(5),
@@ -51,12 +53,12 @@ func (c *Crawler) SetCaptcha(captcha string) {
 	c.captcha = &captcha
 }
 
-func (c *Crawler) CompleteOrder(order models.Order) error {
+func (c *Crawler) CompleteOrder() error {
 	if c.captcha == nil {
 		return fmt.Errorf("crawler dosent have filled captcha!")
 	}
 
-	trainDatas, feedBackErrors, err := c.submitForm(order, *c.captcha, order.JsessionId)
+	trainDatas, feedBackErrors, err := c.submitForm(c.order, *c.captcha, c.order.JsessionId)
 	if err != nil {
 		return fmt.Errorf("submit train order failed, err: %s", err)
 	}
@@ -76,7 +78,7 @@ func (c *Crawler) CompleteOrder(order models.Order) error {
 		return errors.New("所選時間內沒有票可以購買")
 	}
 
-	validTrain := c.filterValidTrain(order, trainDatas)
+	validTrain := c.filterValidTrain(c.order, trainDatas)
 	if len(validTrain) == 0 {
 		return errors.New("沒有符合條件的票可以購買")
 	}
@@ -86,7 +88,7 @@ func (c *Crawler) CompleteOrder(order models.Order) error {
 		return fmt.Errorf("confirm train failed, err: %s", err)
 	}
 
-	err = c.confirmTicket(order)
+	err = c.confirmTicket(c.order)
 	if err != nil {
 		return fmt.Errorf("confirm ticket failed, err: %s", err)
 	}

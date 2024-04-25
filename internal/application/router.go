@@ -42,13 +42,7 @@ func (app *Application) handleCompleteOrder(c *gin.Context) {
 
 	crawler.SetCaptcha(body.Captcha)
 
-	order, err := app.getOrderById(orderId)
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("get order failed, err:% s", err)})
-		return
-	}
-
-	err = crawler.CompleteOrder(*order)
+	err = crawler.CompleteOrder()
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": fmt.Sprintf("complete order failed, err:% s", err)})
 		return
